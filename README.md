@@ -3,7 +3,7 @@
 ## Workflow examples:
 
     - name: MS Teams Nofitication
-      uses: interdiscount/github-actions-ms-teams-notification@1.0.1
+      uses: interdiscount/github-actions-ms-teams-notification@1.0.2
       with:
         webhook: ${{ secrets.MS_TEAMS_WEBHOOK }}
         service: "Hybris Backend API"
@@ -15,7 +15,7 @@
     // YOUR DEPLOYMENT STEPS
     
     - name: MS Teams Nofitication
-      uses: interdiscount/github-actions-ms-teams-notification@1.0.1
+      uses: interdiscount/github-actions-ms-teams-notification@1.0.2
       if: ${{ failure() }}
       with:
         webhook: ${{ secrets.MS_TEAMS_WEBHOOK }}
@@ -26,7 +26,7 @@
         version: "1.0.0"
          
     - name: MS Teams Nofitication
-      uses: interdiscount/github-actions-ms-teams-notification@1.0.1
+      uses: interdiscount/github-actions-ms-teams-notification@1.0.2
       if: ${{ success() }}
       with:
         webhook: ${{ secrets.MS_TEAMS_WEBHOOK }}
