@@ -1,0 +1,29 @@
+name: 'Microsoft Teams Notification'
+description: ''
+
+inputs:
+  service:
+    description: 'The name of the service'
+    required: true
+  state:
+    description: 'The current state of the service (Started, Failed, Success)'
+    required: true
+    default: "Started"
+  stage:
+    description: 'The deployment stage (development, acceptance, production)'
+    required: true
+  brand:
+    description: 'The brand which is affected (Microspot, Interdiscount)'
+    required: true
+  version:
+    description: 'The deployment version'
+    required: true
+  webhook:
+    description: 'The webhook uri'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/push-notification.sh '${{ inputs.service }}' '${{ inputs.state }}' '${{ inputs.stage }}' '${{ inputs.brand }}' '${{ inputs.version }}' '${{ inputs.webhook }}'
+      shell: bash
