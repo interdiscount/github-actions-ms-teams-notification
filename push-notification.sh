@@ -11,9 +11,9 @@ WEBHOOK=$6
 NOW=$(date +'%d.%m.%Y %H:%M:%S')
 
 # BRAND IMAGE
-BRAND_IMAGE_URL='https://www.microspot.ch/images/logos/Microspot_logo.png'
+BRAND_IMAGE_URL='https://storage.googleapis.com/static-shops/github-actions/microspot.png'
 if [ "$BRAND" == "Interdiscount" ] || [ "$BRAND" == "interdiscount" ]; then
-    BRAND_IMAGE_URL='https://media.glassdoor.com/sqll/158689/interdiscount-squarelogo-1472471988427.png'
+    BRAND_IMAGE_URL='https://storage.googleapis.com/static-shops/github-actions/interdiscount.png'
 fi
 
 # COLOR
