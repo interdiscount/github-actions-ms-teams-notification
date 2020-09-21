@@ -13,7 +13,7 @@
         state: "Started"
         stage: "Development"
         brand: "Interdiscount"
-        version: "1.0.0"
+        version: "1.0.2"
     
     // YOUR DEPLOYMENT STEPS
     
@@ -26,7 +26,7 @@
         state: "Failed"
         stage: "Development"
         brand: "Interdiscount"
-        version: "1.0.0"
+        version: "1.0.2"
          
     - name: MS Teams Nofitication
       uses: interdiscount/github-actions-ms-teams-notification@1.0.2
@@ -37,4 +37,4 @@
         state: "Success"
         stage: "Development"
         brand: "Interdiscount"
-        version: "1.0.0"
+        version: "1.0.2"
