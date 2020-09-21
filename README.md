@@ -1,4 +1,7 @@
 # Github Action: Microsoft Teams Notification
+## Example
+
+![Example](docs/example-message.png)
 
 ## Workflow examples:
 
