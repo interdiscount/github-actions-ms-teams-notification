@@ -1,4 +1,4 @@
-# GH MS TEAMS Action
+# Github Action: Microsoft Teams Notification
 
 ## Workflow examples:
 
