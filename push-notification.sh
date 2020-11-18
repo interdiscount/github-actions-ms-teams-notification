@@ -15,6 +15,9 @@ BRAND_IMAGE_URL='https://storage.googleapis.com/static-shops/github-actions/micr
 if [ "$BRAND" == "Interdiscount" ] || [ "$BRAND" == "interdiscount" ]; then
     BRAND_IMAGE_URL='https://storage.googleapis.com/static-shops/github-actions/interdiscount.png'
 fi
+if [ "$BRAND" == "Dashboard" ]; then
+    BRAND_IMAGE_URL='https://storage.googleapis.com/static-shops/github-actions/dashboard.png'
+fi
 
 # COLOR
 COLOR='49C6e5'
