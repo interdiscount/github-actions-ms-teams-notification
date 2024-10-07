@@ -11,22 +11,9 @@ WEBHOOK=$6
 NOW=$(date +'%d.%m.%Y %H:%M:%S')
 
 # BRAND IMAGE
-BRAND_IMAGE_URL='https://storage.googleapis.com/static-shops/github-actions/microspot.png'
-if [ "$BRAND" == "Interdiscount" ] || [ "$BRAND" == "interdiscount" ]; then
-    BRAND_IMAGE_URL='https://storage.googleapis.com/static-shops/github-actions/interdiscount.png'
-fi
+BRAND_IMAGE_URL='https://storage.googleapis.com/static-shops/github-actions/interdiscount.png'
 if [ "$BRAND" == "Dashboard" ]; then
     BRAND_IMAGE_URL='https://storage.googleapis.com/static-shops/github-actions/dashboard.png'
-fi
-
-# COLOR
-COLOR='49C6e5'
-if [ "$STATE" == "Success" ] || [ "$STATE" == "success" ]; then
-    COLOR='00ae6d'
-fi
-
-if [ "$STATE" == "Failed" ] || [ "$STATE" == "failed" ]; then
-    COLOR='e20713'
 fi
 
 echo "Notify MS Teams Channel"
@@ -35,19 +22,70 @@ echo "Notify MS Teams Channel"
 curl --location --request POST $WEBHOOK \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "@type": "MessageCard",
-    "@context": "https://schema.org/extensions",
-    "summary": "'"$STATE"': Deployment to '"$BRAND"' '"$STAGE"'",
-    "themeColor": "'"$COLOR"'",
-    "title": "'"$STATE"': Deployment to '"$BRAND"' '"$STAGE"'",
-    "sections": [{
-        "activityTitle": "'"$VERSION"'",
-        "activitySubtitle": "'"$NOW"'",
-        "activityImage": "'"$BRAND_IMAGE_URL"'",
-        "facts": [{
-            "name": "Service",
-            "value": "'"$SERVICE"'"
-        }]
-    }]
-}
-'
+    "type": "message",
+    "attachments": [
+        {
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "content": {
+                "type": "AdaptiveCard",
+                "body": [
+                    {
+                        "type": "TextBlock",
+                        "spacing": "Small",
+                        "size": "Medium",
+                        "weight": "Bolder",
+                        "text": "'"$STATE"': Deployment to '"$BRAND"' '"$STAGE"'",
+                        "style": "heading",
+                        "wrap": true
+                    },
+                    {
+                        "type": "ColumnSet",
+                        "columns": [
+                            {
+                                "type": "Column",
+                                "items": [
+                                    {
+                                        "type": "Image",
+                                        "url": "'"$BRAND_IMAGE_URL"'",
+                                        "size": "Small"
+                                    }
+                                ],
+                                "width": "auto"
+                            },
+                            {
+                                "type": "Column",
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "weight": "Bolder",
+                                        "text": "'"$VERSION"'",
+                                        "wrap": true
+                                    },
+                                    {
+                                        "type": "TextBlock",
+                                        "spacing": "None",
+                                        "text": "'"$NOW"'",
+                                        "isSubtle": true,
+                                        "wrap": true
+                                    }
+                                ],
+                                "width": "stretch"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "FactSet",
+                        "facts": [
+                            {
+                                "title": "Service",
+                                "value": "'"$SERVICE"'",
+                            }
+                        ]
+                    }
+                ],
+                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                "version": "1.4"
+            }
+        }
+    ]
+}'
