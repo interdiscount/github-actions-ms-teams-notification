@@ -16,6 +16,16 @@ if [ "$BRAND" == "Dashboard" ]; then
     BRAND_IMAGE_URL='https://storage.googleapis.com/static-shops/github-actions/dashboard.png'
 fi
 
+# COLOR
+COLOR='default'
+if [[ "$STATE" =~ ^(Success|success|Started|started)$ ]]; then
+    COLOR='good'
+fi
+
+if [[ "$STATE" =~ ^(Failed|failed)$ ]]; then
+    COLOR='warning'
+fi
+
 echo "Notify MS Teams Channel"
 
 # PERFORM REQUEST
@@ -36,6 +46,7 @@ curl --location --request POST $WEBHOOK \
                         "weight": "Bolder",
                         "text": "'"$STATE"': Deployment to '"$BRAND"' '"$STAGE"'",
                         "style": "heading",
+                        "color": "'"$COLOR"'",
                         "wrap": true
                     },
                     {
